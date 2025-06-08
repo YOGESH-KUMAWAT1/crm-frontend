@@ -1,0 +1,91 @@
+/* ===============================
+   ProcessColumn Styles
+================================= */
+.process-column {
+    background-color: #f7f9fc;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    flex: 0 0 280px; /* fixed width for each column */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh; /* Allow columns to scroll if content overflows */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.process-column:hover {
+    transform: translateY(-2px);
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0; /* Prevent header from shrinking if content overflows */
+}
+
+.column-header h3 {
+    font-size: 18px; /* Slightly larger heading */
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Optional: If you want a count badge in the header */
+/*
+.column-header .order-count {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 500;
+}
+*/
+
+.column-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1; /* Allow cards container to grow and fill available space */
+}
+
+.column-cards.dragging-over {
+    background-color: #f0f8ff; /* Light blue when dragging over */
+    border-radius: 8px;
+    padding: 10px; /* Add padding to visually expand the droppable area */
+}
+
+.empty-column {
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+    padding: 20px 10px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    background-color: #fafafa;
+    margin-top: 10px; /* Add some space above if a column is empty */
+}
+
+/* Scrollbar styles for process-column (since column-cards is now inside it) */
+.process-column::-webkit-scrollbar {
+    width: 6px;
+}
+
+.process-column::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.process-column::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+}
+
+.process-column::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}

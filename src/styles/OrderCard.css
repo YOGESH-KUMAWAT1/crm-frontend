@@ -1,0 +1,62 @@
+/* ===============================
+   OrderCard Styles
+================================= */
+.order-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Lighter, more modern shadow */
+    transition: all 0.2s ease-in-out;
+    cursor: grab; /* Indicate draggable */
+}
+
+.order-card.dragging {
+    opacity: 0.8;
+    transform: rotate(2deg); /* Subtle rotation for dragging effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* More prominent shadow when dragging */
+}
+
+.order-card.selected {
+    border-color: #007bff; /* Blue border when selected */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Glow effect */
+    background-color: #e6f7ff; /* Light blue background */
+    cursor: pointer; /* Indicate it's clickable for selection */
+}
+
+.order-card h4 { /* Targeting h4 directly within order-card for specific styling */
+    margin: 0 0 8px 0; /* Adjusted margin for better spacing */
+    font-size: 16px;
+    color: #222;
+}
+
+.order-card p { /* Targeting paragraphs for consistent text styles */
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Specific styles for different content within the card */
+.order-card p:last-child {
+    margin-bottom: 0; /* Remove bottom margin from last paragraph */
+}
+
+.order-card .payment-status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block; /* Ensures padding and background apply correctly */
+    margin-top: 5px; /* Add some space above payment status */
+}
+
+.order-card .payment-status.paid {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green */
+}
+
+.order-card .payment-status.pending {
+    background-color: #fff3cd; /* Light yellow */
+    color: #856404; /* Dark yellow */
+}

@@ -1,0 +1,407 @@
+/* src/styles/CustomerDashboard.css */
+
+/* Base container for the whole dashboard */
+.customer-dashboard-container {
+  padding: 20px;
+  max-width: inherit;
+  margin: 20px auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* CustomerHeader Styles */
+.customer-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.customer-header-left .customer-header-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.customer-header-left .customer-breadcrumbs {
+  font-size: 14px;
+  color: #666;
+}
+
+.customer-header-left .customer-separator {
+  margin: 0 5px;
+}
+
+.customer-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.customer-search-bar {
+  position: relative;
+  margin-right: 15px;
+}
+
+.customer-search-bar input {
+  padding: 8px 12px 8px 35px; /* Space for icon */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+  font-size: 14px;
+}
+
+.customer-search-bar .customer-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #888;
+}
+
+.customer-add-button {
+  background-color: #2196f3; /* Blue */
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.customer-add-button:hover {
+  background-color: #1976d2;
+}
+
+/* CustomerFilterSection Styles */
+.customer-filter-section-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.customer-filter-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px; /* For smaller screens */
+}
+
+.customer-filter-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 180px;
+}
+
+.customer-filter-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.customer-action-button {
+  background-color: #f0f2f5;
+  color: #333;
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap; /* Prevent text wrapping on buttons */
+}
+
+.customer-action-button:hover {
+  background-color: #e2e6ea;
+}
+
+.customer-action-button .customer-icon {
+  font-size: 16px;
+}
+
+/* Dropdown for Show Columns */
+.customer-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.customer-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 100; /* Ensure it's above other elements */
+  border-radius: 4px;
+  padding: 10px;
+  right: 0;
+  top: 100%;
+  margin-top: 5px;
+}
+
+.customer-dropdown-content label {
+  display: block;
+  padding: 5px 0;
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.customer-dropdown-content label input {
+  margin-right: 8px;
+}
+
+.customer-dropdown:hover .customer-dropdown-content {
+  display: block;
+}
+
+/* CustomerTable Styles */
+.customer-table-container {
+  overflow-x: auto;
+}
+
+.customer-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.customer-data-table th,
+.customer-data-table td {
+  border: 1px solid #eee;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.customer-data-table th {
+  background-color: #f8f8f8;
+  font-weight: bold;
+  color: #333;
+  text-transform: capitalize;
+}
+
+.customer-data-table tr:nth-child(even) {
+  background-color: #fdfdfd;
+}
+
+.customer-data-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.customer-action-button-small {
+  background-color: #007bff;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.customer-action-button-small:hover {
+  background-color: #0056b3;
+}
+
+.customer-action-button-small.customer-delete-button {
+  background-color: #dc3545;
+}
+
+.customer-action-button-small.customer-delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .customer-header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .customer-header-right {
+    margin-top: 15px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .customer-search-bar {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  .customer-search-bar input {
+    width: 100%;
+  }
+
+  .customer-filter-section-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .customer-filter-inputs {
+    width: 100%;
+    flex-direction: column;
+  }
+  .customer-filter-input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .customer-filter-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .customer-action-button {
+    flex: 1 1 auto;
+    margin-bottom: 10px;
+  }
+}
+/* src/styles/CustomerDashboard.css */
+
+/* ... (previous styles remain the same) ... */
+
+/* CustomerFilterSection Styles */
+.customer-filter-section-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px; /* Add some gap between filter inputs and actions */
+}
+
+.customer-filter-inputs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* Allow inputs to wrap */
+}
+
+.customer-filter-input {
+  padding: 10px 14px; /* Slightly more padding */
+  border: 1px solid #ddd;
+  border-radius: 6px; /* Slightly more rounded corners */
+  font-size: 14px;
+  min-width: 180px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); /* Subtle inner shadow */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.customer-filter-input:focus {
+  border-color: #88bde6; /* Highlight on focus */
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05), 0 0 0 3px rgba(33, 150, 243, 0.2);
+  outline: none;
+}
+
+.customer-filter-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* Allow action buttons to wrap */
+}
+
+.customer-action-button {
+  background-color: #e9ecef; /* Lighter background */
+  color: #343a40; /* Darker text */
+  padding: 10px 18px; /* More padding */
+  border: 1px solid #ced4da; /* Subtle border */
+  border-radius: 6px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500; /* Slightly bolder text */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* More space between icon and text */
+  white-space: nowrap;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.customer-action-button:hover {
+  background-color: #dee2e6;
+  border-color: #adb5bd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.customer-action-button:active {
+  background-color: #ced4da;
+  border-color: #adb5bd;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.customer-action-button .customer-icon {
+  font-size: 17px; /* Slightly larger icon */
+}
+
+
+/* --- SHOW COLUMNS DROPDOWN STYLES (ENHANCED) --- */
+.customer-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.customer-dropdown-toggle {
+  /* Inherits styles from .customer-action-button, no specific changes needed here */
+}
+
+.customer-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff; /* White background */
+  min-width: 200px; /* Slightly wider */
+  box-shadow: 0px 8px 20px 0px rgba(0,0,0,0.15); /* Softer, larger shadow */
+  z-index: 100;
+  border-radius: 8px; /* More rounded corners */
+  padding: 15px; /* More internal padding */
+  right: 0;
+  top: 100%;
+  margin-top: 10px; /* More space from the button */
+  border: 1px solid #e0e0e0; /* Subtle border */
+  opacity: 0; /* Start hidden for transition */
+  transform: translateY(10px); /* Start slightly below for animation */
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Smooth transition */
+}
+
+.customer-dropdown:hover .customer-dropdown-content,
+.customer-dropdown.active .customer-dropdown-content { /* Add .active class for click-to-open */
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.customer-dropdown-content label {
+  display: flex; /* Use flexbox for better alignment */
+  align-items: center; /* Vertically align checkbox and text */
+  padding: 8px 0; /* More vertical padding for each item */
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none; /* Prevent text selection on click */
+  border-bottom: 1px solid #f0f0f0; /* Subtle separator */
+}
+
+.customer-dropdown-content label:last-child {
+  border-bottom: none; /* No border for the last item */
+}
+
+.customer-dropdown-content label:hover {
+  background-color: #f8f8f8; /* Highlight on hover */
+  border-radius: 4px; /* Small radius on hover */
+  padding-left: 5px; /* Slight indent on hover */
+}
+
+.customer-dropdown-content label input[type="checkbox"] {
+  margin-right: 10px; /* More space between checkbox and label */
+  /* Basic styling for checkbox, you might want to use a custom checkbox component */
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* ... (rest of the CSS for table and responsive adjustments) ... */

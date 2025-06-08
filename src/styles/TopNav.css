@@ -1,0 +1,500 @@
+/* ================================
+    Global Variables & Reset
+================================ */
+:root {
+    --primary-color: #2b6cb0; /* Adjusted to match your previous blue from image */
+    --primary-hover: #255a96; /* Darker shade for hover */
+    --gray-100: #f7f9fc; /* Light background similar to previous code */
+    --gray-200: #e0e0e0; /* Light border color */
+    --gray-300: #ddd;
+    --gray-500: #555; /* General text color for nav items */
+    --gray-700: #333; /* Darker text for headings, main content */
+    --white: #ffffff;
+    --focus-outline: 2px solid #2b6cb0; /* Blue focus outline */
+    --font-family: 'Arial', sans-serif; /* A common, clean font, consistent with previous suggestion */
+    --nav-item-active-bg: #e6f0fa; /* Light blue background for active nav item */
+}
+
+/* Base styles for the app container */
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the app takes full viewport height */
+    background-color: var(--gray-100); /* Overall app background */
+}
+
+.main-content {
+    flex-grow: 1; /* Allows content area to fill remaining vertical space */
+    overflow-y: auto; /* Enables scrolling for content if it overflows */
+    padding: 20px; /* Example padding for content, adjust as needed */
+    background-color: var(--gray-100); /* Background for main content area */
+}
+
+/* *,
+*::before,
+*::after {
+    box-sizing: border-box;
+} */
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    color: var(--gray-700);
+    background-color: var(--white); /* This might be overridden by .App background */
+}
+
+/* ================================
+    Top Navigation Bar
+================================ */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Added subtle shadow */
+    position: sticky; /* Make it stick to the top when scrolling */
+    top: 0;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Ensure focus states are applied correctly and consistently */
+.top-nav a:focus,
+.nav-item:focus,
+.dropdown-item:focus,
+.icon-button:focus, /* Added focus for icon buttons */
+.user-menu:focus-within, /* Focus for user menu as a whole */
+.pos-button:focus,
+.search-result-item:focus {
+    outline: var(--focus-outline);
+    outline-offset: 2px;
+}
+
+/* ================================
+    Navigation Sections
+================================ */
+.nav-left {
+    display: flex;
+    gap: 16px; /* Space between main nav items */
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Adjusted gap for right section items */
+}
+
+/* ================================
+    Navigation Items (Parent)
+================================ */
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px; /* Slightly increased padding for better click area */
+    font-size: 14px;
+    color: var(--gray-500);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border-radius: 6px;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.nav-item:hover {
+    background-color: var(--gray-100); /* Use gray-100 for hover */
+    color: var(--gray-700); /* Darker text on hover */
+}
+
+.nav-item.active {
+    background-color: var(--nav-item-active-bg); /* Light blue background for active */
+    color: var(--primary-color); /* Primary color text for active */
+    font-weight: 600;
+}
+
+.nav-item.active .dropdown-icon {
+    color: var(--primary-color); /* Ensure dropdown icon color matches active state */
+}
+
+.dropdown-icon {
+    margin-left: 4px;
+    transition: transform 0.2s ease-in-out; /* Smooth rotation */
+}
+
+/* Rotate dropdown icon when its menu is open */
+.nav-item.active .dropdown-icon { /* This applies when the parent is active AND its dropdown is open */
+    transform: rotate(180deg);
+}
+
+
+/* ================================
+    Dropdown Menus (General)
+================================ */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px); /* Position 5px below the nav-item */
+    left: 0;
+    background-color: var(--white);
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    padding: 5px 0; /* Adjusted padding */
+    min-width: 160px; /* Slightly wider */
+    z-index: 1050; /* Higher z-index than .top-nav to ensure it's on top */
+}
+
+.dropdown-item {
+    padding: 10px 15px; /* Consistent padding */
+    font-size: 14px; /* Consistent font size */
+    color: var(--gray-500);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.dropdown-item:hover {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+}
+
+.dropdown-item.active {
+    background-color: var(--nav-item-active-bg); /* Use active background color */
+    color: var(--primary-color); /* Use primary color */
+    font-weight: 600; /* Bold for active sub-item */
+    border-left: 3px solid var(--primary-color); /* Primary color border for active */
+    padding-left: 12px; /* Adjust padding due to border */
+}
+
+/* ================================
+    Right Section Icons & Buttons
+================================ */
+.icon-button,
+.icon-with-badge,
+.user-menu .user-info-display { /* Applied consistent hover styling to the display part of user menu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px; /* Consistent padding for circular hover area */
+    border-radius: 50%; /* Circular shape for hover */
+    cursor: pointer;
+    color: var(--gray-500);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.icon-button:hover,
+.icon-with-badge:hover,
+.user-menu .user-info-display:hover {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+}
+
+.icon-with-badge {
+    position: relative;
+}
+
+.icon-with-badge .badge {
+    position: absolute;
+    top: 1px; /* Adjusted to be slightly higher */
+    right: 1px; /* Adjusted */
+    background-color: #ff4d4f; /* Red badge */
+    color: var(--white);
+    font-size: 9px; /* Slightly smaller font */
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 4px; /* Tighter padding */
+    min-width: 16px; /* Ensures minimum circular size */
+    height: 16px; /* Ensures minimum circular size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* Prevents line height issues */
+    border: 1px solid var(--white); /* White border around badge */
+}
+
+/* ================================
+    User Menu Dropdown
+================================ */
+.user-menu {
+    position: relative; /* Essential for absolute positioning of its dropdown */
+    /* No display:flex here, the .user-info-display inside it handles the visual part */
+}
+
+/* Styling for the user menu dropdown itself */
+.user-menu .dropdown-menu.user-dropdown { /* Target specifically the user dropdown */
+    top: calc(100% + 5px); /* Position below the user info display */
+    right: 0;
+    left: auto; /* Override left:0 from general dropdown */
+    min-width: 120px; /* Adjusted width */
+    /* `display: block/none` will be handled by React state, not CSS hover */
+}
+
+/* No need for .user-menu:hover .user-dropdown or :focus-within.
+   React state (isUserDropdownOpen) handles visibility. */
+
+
+/* ================================
+    POS Button
+================================ */
+.pos-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 8px 15px; /* Consistent padding with other buttons */
+    border: none;
+    border-radius: 6px;
+    font-size: 14px; /* Consistent font size */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.pos-button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ================================
+    Search Form (Reusable - for SearchPopup)
+================================ */
+.search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.search-form input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    width: 100%; /* Make input take full width of its container */
+    padding: 4px 0; /* Adjusted padding to align with search icon */
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    margin-top: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    z-index: 900; /* Should be lower than modal, higher than general content */
+}
+
+.search-result-item {
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 14px; /* Consistent font size */
+    color: var(--gray-700);
+    transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+    background-color: var(--gray-100);
+}
+
+.no-result {
+    color: #999;
+    font-style: italic;
+    padding: 10px 14px;
+    font-size: 14px;
+}
+
+/* ================================
+    Search Modal
+================================ */
+.search-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+    z-index: 2000; /* Highest z-index for modal overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-modal {
+    background: var(--white);
+    padding: 25px; /* Slightly more padding */
+    border-radius: 10px;
+    width: 400px; /* Slightly wider modal */
+    max-width: 90%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+    position: relative; /* For close button positioning */
+}
+
+.search-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* More space below header */
+    color: var(--gray-700);
+}
+
+.search-modal-header h3 {
+    margin: 0; /* Remove default margin */
+    font-size: 18px; /* Larger title */
+    font-weight: 600;
+}
+
+.search-modal input {
+    width: 100%;
+    padding: 12px; /* More padding for input */
+    font-size: 15px; /* Larger font size */
+    margin-bottom: 15px;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+}
+
+.search-modal-results {
+    max-height: 280px; /* Slightly more height */
+    overflow-y: auto;
+    border-top: 1px solid var(--gray-200); /* Separator for results */
+    padding-top: 10px;
+}
+
+.close-icon {
+    cursor: pointer;
+    font-size: 20px; /* Larger close icon */
+    color: var(--gray-500);
+    transition: color 0.2s;
+}
+
+.close-icon:hover {
+    color: var(--gray-700);
+}
+
+/* ================================
+    Responsive: Tablet View
+================================ */
+@media (max-width: 992px) { /* Adjusted breakpoint for larger tablets */
+    .top-nav {
+        flex-wrap: wrap; /* Allow items to wrap to next line */
+        justify-content: center; /* Center items when wrapped */
+        gap: 10px 20px; /* Row and column gap */
+        padding: 12px 15px;
+    }
+
+    .nav-left, .nav-right {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .nav-item {
+        padding: 8px 10px;
+    }
+
+    /* Adjust dropdowns to open below the nav item still, but might need width adjustments */
+    .dropdown-menu,
+    .user-dropdown {
+        position: absolute;
+        top: calc(100% + 5px); /* Keep position relative to parent nav-item */
+        left: 0;
+        right: auto; /* Ensure it sticks to the left edge of its parent */
+        min-width: 160px;
+    }
+
+    .user-menu .dropdown-menu.user-dropdown {
+        right: 0; /* Keep user dropdown sticking to the right of its parent */
+        left: auto;
+    }
+
+    .search-modal {
+        width: 320px;
+        padding: 20px;
+    }
+}
+
+/* ================================
+    Responsive: Mobile View
+================================ */
+@media (max-width: 576px) { /* Adjusted breakpoint for smaller mobiles */
+    .top-nav {
+        flex-direction: column; /* Stack items vertically */
+        align-items: stretch; /* Stretch items to full width */
+        padding: 10px;
+        gap: 10px; /* Space between stacked sections */
+    }
+
+    .nav-left {
+        flex-direction: column; /* Stack nav items */
+        align-items: stretch;
+        gap: 5px;
+    }
+
+    .nav-right {
+        width: 100%; /* Take full width */
+        justify-content: space-around; /* Distribute items */
+        gap: 10px;
+    }
+
+    .nav-item {
+        width: 100%; /* Nav items take full width */
+        justify-content: space-between; /* Icon on left, text in middle, arrow on right */
+        padding: 10px 15px;
+    }
+
+    /* Dropdowns for mobile (expand inline) */
+    .dropdown-menu {
+        position: relative; /* Make it flow with document */
+        top: auto;
+        left: auto;
+        right: auto;
+        box-shadow: none;
+        border: none;
+        background-color: var(--gray-100); /* Slightly different background to differentiate */
+        padding: 0;
+        min-width: auto;
+        border-radius: 0; /* No border radius */
+    }
+
+    .dropdown-item {
+        padding-left: 30px; /* Indent sub-items */
+        font-size: 13px;
+    }
+
+    .search-form { /* Hide search bar in the top nav for very small screens if modal is used */
+        display: none;
+    }
+
+    .user-dropdown {
+        position: relative; /* Position relative */
+        top: auto;
+        right: auto;
+        left: auto;
+        min-width: auto;
+        background-color: var(--gray-100);
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+    }
+
+    .user-menu .user-info-display { /* Restore spacing for user icon on mobile */
+        padding: 8px;
+        border-radius: 6px; /* Rectangular hover */
+        width: 100%; /* Stretch to full width */
+        justify-content: center;
+    }
+
+    .pos-button {
+        flex-grow: 1; /* Allow POS button to take available space */
+        text-align: center;
+    }
+
+    .search-modal {
+        width: 95%; /* Make modal almost full width on small screens */
+        margin: 10px; /* Margin from edges */
+    }
+}
